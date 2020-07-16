@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import exphbs from 'express-handlebars';
 import connectDB from './config/db.mjs';
+import routes from './routes/index.mjs';
 
 // Load Global configs
 dotenv.config({ path: './config/config.env' });
@@ -19,6 +20,9 @@ if (process.env.NODE_ENV === 'development') {
 // Setup Handlebars Engine
 app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', '.hbs');
+
+// Routes
+app.use('/', routes);
 
 app.listen();
 
