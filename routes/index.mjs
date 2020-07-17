@@ -5,13 +5,15 @@ const router = express.Router();
 // @desc    Login/Landing Page
 // @route   GET /
 router.get('/', (req, res) => {
-  res.render('This is a homepage');
+  res.render('login', {
+    layout: 'login'
+  });
 });
 
 // @desc    Dashboard Page
 // @route   GET /
 router.get('/dashboard', (req, res) => {
-  res.render('This is a dashboard page');
+  res.render('dashboard');
 });
 
 export default router;
