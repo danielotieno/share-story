@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 
 const router = express.Router();
 
@@ -6,7 +6,7 @@ const router = express.Router();
 // @route   GET /
 router.get('/', (req, res) => {
   res.render('login', {
-    layout: 'login'
+    layout: 'login',
   });
 });
 
@@ -16,4 +16,4 @@ router.get('/dashboard', (req, res) => {
   res.render('dashboard');
 });
 
-export default router;
+module.exports = router;
