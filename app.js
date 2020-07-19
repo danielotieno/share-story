@@ -8,8 +8,9 @@ const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const connectDB = require('./config/db');
-const indexRoutes = require('./routes/index');
-const authRoutes = require('./routes/auth');
+const indexRoute = require('./routes/index');
+const authRoute = require('./routes/auth');
+const storyRoute = require('./routes/stories');
 const passportAuth = require('./config/passport');
 
 // Load Global configs
@@ -21,6 +22,12 @@ passportAuth(passport);
 connectDB();
 
 const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(express.json());
 
 // Logging
 if (process.env.NODE_ENV === 'development') {
@@ -50,8 +57,9 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/', indexRoutes);
-app.use('/auth', authRoutes);
+app.use('/', indexRoute);
+app.use('/auth', authRoute);
+app.use('/stories', storyRoute);
 
 app.listen();
 
