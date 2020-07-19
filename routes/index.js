@@ -1,5 +1,5 @@
 const express = require('express');
-const { ensureAuth, ensureGuest } = req('../middleware/auth');
+const { ensureAuth, ensureGuest } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.get('/', ensureGuest, (req, res) => {
 // @desc    Dashboard Page
 // @route   GET /
 router.get('/dashboard', ensureAuth, (req, res) => {
-  res.render('dashboard');
+  res.render('dashboard', { name: req.user.displayName });
 });
 
 module.exports = router;
