@@ -23,4 +23,19 @@ router.post('/', ensureAuth, async (req, res) => {
   }
 });
 
+// @desc    Show all stories
+// @route   GET /stories/
+router.get('/', ensureAuth, async (req, res) => {
+  try {
+    const stories = await Story.find({ status: 'public' })
+      .populate('user')
+      .sort({ createdAt: 'desc' })
+      .lean();
+    res.redirect('/stories/index', { stories });
+  } catch (err) {
+    console.log(err);
+    res.redirect('error/500');
+  }
+});
+
 module.exports = router;
