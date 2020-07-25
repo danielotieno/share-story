@@ -52,7 +52,7 @@ npm run start
 
 ## Demo
 
-The app is live at
+The app is live at https://share-story-app.herokuapp.com/
 
 ---
 
