@@ -84,7 +84,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Setup Global variable
-app.use(function (rrq, res, next) {
+app.use(function (req, res, next) {
   res.locals.user = req.user || null;
   next();
 });
@@ -100,7 +100,6 @@ app.use('/stories', storyRoute);
 app.listen();
 
 const PORT = process.env.PORT;
-console.log(PORT);
 
 app.listen(
   PORT,
